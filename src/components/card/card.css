@@ -1,0 +1,19 @@
+.card {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	row-gap: 10px;
+}
+.card__title {
+	color: rgb(107, 114, 128);
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 24px;
+}
+.card__amount {
+	color: rgb(37, 44, 50);
+	font-size: 22px;
+	font-weight: 700;
+	line-height: 32px;
+}
