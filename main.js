@@ -1,4 +1,3 @@
-import 'normalize.css';
 import './src/common/div-component.css';
 import { CardList } from './src/components/card-list/card-list.js';
 import { Chart } from './src/components/chart/chart.js';
