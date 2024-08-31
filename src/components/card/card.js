@@ -1,6 +1,6 @@
-import WalletIcon from '../../../public/Wallet.svg';
 import { DivComponent } from '../../common/div-component';
 import './card.css';
+import WalletIcon from '/Wallet.svg';
 
 export class Card extends DivComponent {
 	#title;
