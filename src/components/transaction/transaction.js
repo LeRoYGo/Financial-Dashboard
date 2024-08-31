@@ -20,7 +20,7 @@ export class Transaction extends DivComponent {
 			style = 'transaction__sum--income';
 			this.#sum = '+' + this.#sum;
 		}
-		return `<span class='transaction__sum ${style}'>${this.#sum}</span>`;
+		return `<span class='transaction__sum ${style}'>${this.#sum} ₽</span>`;
 	}
 
 	render() {

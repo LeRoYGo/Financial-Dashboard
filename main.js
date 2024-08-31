@@ -31,7 +31,7 @@ class MainView {
 	render() {
 		this.app.classList.add('layout');
 		this.app.appendChild(new Header().render());
-		this.app.appendChild(new CardList().render());
+		this.app.appendChild(new CardList(2331, 646467, 6434).render());
 		this.app.appendChild(new StatisticBox().render());
 		this.app.appendChild(new Chart().render());
 		this.app.appendChild(new TransactionsList(lol).render());

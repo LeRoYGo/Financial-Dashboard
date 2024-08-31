@@ -18,7 +18,7 @@ export class Card extends DivComponent {
 		this.el.innerHTML = `
 				<img src="${this.#icon}" alt="">
 				<h2 class="card__title">${this.#title}</h2>
-				<span class="card__amount">$${this.#amount}</span>
+				<span class="card__amount">₽ ${this.#amount}</span>
 		`;
 		return this.el;
 	}
