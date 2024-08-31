@@ -8,12 +8,12 @@ import WalletIcon from '/Wallet.svg';
 export class CardList extends DivComponent {
 	#listCard;
 
-	constructor() {
+	constructor(balance = 0, incomes = 0, expenses = 0) {
 		super();
 		this.#listCard = [
-			new Card('Balance', '12,003.902', WalletIcon),
-			new Card('Incomes This Month', '12,003.902', IncomesIcon),
-			new Card('Expenses This Month', '12,003.902', ExpensesIcon),
+			new Card('Balance', balance, WalletIcon),
+			new Card('Incomes This Month', incomes, IncomesIcon),
+			new Card('Expenses This Month', expenses, ExpensesIcon),
 		];
 	}
 

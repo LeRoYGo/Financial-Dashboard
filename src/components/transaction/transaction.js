@@ -7,23 +7,18 @@ export class Transaction extends DivComponent {
 	#sum;
 	constructor(title = 'Нет данных', sum = 0, data = new Date()) {
 		super();
-		const dd = data.getDate();
-		const mm = data.getMonth();
-		const gggg = data.getFullYear();
 		this.#title = title;
-		this.#data = `${dd}/${mm}/${gggg}`;
+		this.#data = `${data.getDate()}/${data.getMonth()}/${data.getFullYear()}`;
 		this.#sum = sum;
 	}
 	#lol() {
 		let style = '';
-		switch (true) {
-			case this.#sum < 0:
-				style = 'transaction__sum--expense';
-				break;
-			case this.#sum > 0:
-				style = 'transaction__sum--income';
-				this.#sum = '+' + this.#sum;
-				break;
+
+		if (this.#sum < 0) {
+			style = 'transaction__sum--expense';
+		} else if (this.#sum > 0) {
+			style = 'transaction__sum--income';
+			this.#sum = '+' + this.#sum;
 		}
 		return `<span class='transaction__sum ${style}'>${this.#sum}</span>`;
 	}
@@ -31,12 +26,11 @@ export class Transaction extends DivComponent {
 	render() {
 		this.el.classList.add('transaction', 'transaction__container');
 		this.el.innerHTML = `
-						<div class="transaction__title">${this.#title}</div>
-						<datetime class="transaction__data" datetime="${this.#data}">${
+			<div class="transaction__title">${this.#title}</div>
+			<datetime class="transaction__data" datetime="${this.#data}">${
 			this.#data
 		}</datetime >
-						${this.#lol()}
-		`;
+			${this.#lol()}`;
 		return this.el;
 	}
 }

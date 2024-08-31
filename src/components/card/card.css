@@ -4,6 +4,7 @@
 	align-items: flex-start;
 	justify-content: flex-start;
 	row-gap: 10px;
+	min-width: 250px;
 }
 .card__title {
 	color: rgb(107, 114, 128);
