@@ -57,7 +57,7 @@ img {
 .layout {
 	display: grid;
 
-	grid-template-columns: 1fr 400px;
+	grid-template-columns: 4fr 1fr;
 	grid-template-rows: auto auto repeat(3, 1fr);
 	gap: 15px;
 

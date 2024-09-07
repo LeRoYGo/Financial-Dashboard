@@ -1,7 +1,6 @@
 .transactions-list {
 	position: relative;
 	min-height: 250px;
-	max-width: 400px;
 }
 .transactions-list__title {
 	color: rgb(107, 114, 128);
