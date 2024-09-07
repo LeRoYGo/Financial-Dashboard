@@ -62,8 +62,6 @@ img {
 	gap: 15px;
 
 	padding: 25px;
-	height: 100vh;
-	width: 100vw;
 }
 .header {
 	grid-area: 1 / 1 / 2 / 3;

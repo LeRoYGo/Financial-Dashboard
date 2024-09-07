@@ -16,7 +16,10 @@ export class StatisticBox extends DivComponent {
 			</div>`;
 		} else {
 			this.el.classList.add('container', 'analytics');
-			this.el.innerHTML = `<h2>Круговая диаграмма</h2>`;
+			this.el.innerHTML = `
+			<div class='body-tabs'>
+				<h2 class='body-tabs__title'>Analytics</h2>
+			</div>`;
 		}
 
 		this.el.appendChild(new Tabs(tabs).render());
