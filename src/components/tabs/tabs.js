@@ -10,15 +10,12 @@ export class Tabs extends DivComponent {
 	}
 	#addEvent() {
 		document.addEventListener('DOMContentLoaded', function () {
-			const tabItems = document.querySelectorAll('.tab-item');
+			var tabItems = document.querySelectorAll('.tab-item');
 
 			tabItems.forEach(function (tab) {
-				tab.addEventListener('click', function (even) {
-					const target = even.target;
-					console.log(target);
-
-					const tabId = this.getAttribute('data-tab');
-					const content = document.getElementById(tabId);
+				tab.addEventListener('click', function () {
+					var tabId = this.getAttribute('data-tab');
+					var content = document.getElementById(tabId);
 
 					// Удаляем активный класс у текущих вкладок и контента
 					document.querySelector('.tab-item.active').classList.remove('active');
