@@ -76,7 +76,7 @@ img {
 .analytics {
 	grid-area: 2 / 2 / 4 / 3;
 }
-.chart {
+.tabs {
 	grid-area: 3 / 1 / 6 / 2;
 }
 .transactions-list {

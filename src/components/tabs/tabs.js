@@ -1,47 +1,18 @@
-import { DivComponent } from '../../common/div-component';
+import { DivComponent } from '../../common/div-component.js';
+import { ChartBox } from '../chart/chart.js';
 import './tabs.css';
 
 export class Tabs extends DivComponent {
-	#listTabItem;
-	#listTabContent;
-	constructor() {
+	#listTab;
+	#balance;
+	#chart;
+	constructor(balance, listTab) {
 		super('div');
-		this.#listTabItem = [
-			{
-				content: 'Incomes',
-				classStyle: 'tab-item active',
-				dataTab: 'tab1',
-			},
-			{
-				content: 'Expense',
-				classStyle: 'tab-item',
-				dataTab: 'tab2',
-			},
-			{
-				content: 'Savings',
-				classStyle: 'tab-item',
-				dataTab: 'tab3',
-			},
-		];
-		this.#listTabContent = [
-			{
-				content: 'div 1',
-				classStyle: 'tab-pane active',
-				dataTab: 'tab1',
-			},
-			{
-				content: 'div 2',
-				classStyle: 'tab-pane',
-				dataTab: 'tab2',
-			},
-			{
-				content: 'div 3',
-				classStyle: 'tab-pane',
-				dataTab: 'tab3',
-			},
-		];
+		this.#balance = balance;
+		this.#chart = new ChartBox();
+		this.#listTab = listTab;
 	}
-	addEvent() {
+	#addEvent() {
 		document.addEventListener('DOMContentLoaded', function () {
 			const tabItems = document.querySelectorAll('.tab-item');
 
@@ -62,28 +33,47 @@ export class Tabs extends DivComponent {
 		});
 	}
 
-	generateList(tag, classStyle, listElement = []) {
+	#generateList(tag, classStyle, listElement = []) {
 		const el = document.createElement(tag);
 		el.classList.add(classStyle);
 		el.innerHTML = '';
 		const tagHTML = tag == 'ul' ? 'li' : 'div';
 		listElement.map(item => {
-			el.innerHTML += `<${tagHTML} class=${item.classStyle} data-tab=${item.dataTab}>${item.content}</${tagHTML}>`;
+			el.innerHTML += `<${tagHTML} class="${item.classStyle.join(' ')}"
+				${tag == 'ul' ? ` data-tab=${item.dataTab}` : `id=${item.dataTab}`}>
+				${item.content}</${tagHTML}>`;
 		});
 
 		return el;
 	}
 
+	generateChartBox(el) {
+		el.innerHTML = '';
+		el.appendChild(this.#chart.render());
+	}
+
+	workChartBox() {
+		this.#chart.egre();
+	}
+
 	render() {
-		this.el.classList.add('tabs');
+		this.el.classList.add('container', 'tabs');
 
-		this.el.innerHTML = ``;
+		this.el.innerHTML = `
+		<div class='body-tabs'>
+			<h2 class='body-tabs__title'>Your Balance</h2>
+			<span class='body-tabs__sum'>₽ ${this.#balance}</span>
+		</div>`;
 
-		this.el.appendChild(this.generateList('ul', 'tab-list', this.#listTabItem));
 		this.el.appendChild(
-			this.generateList('div', 'tab-content', this.#listTabContent)
+			this.#generateList('ul', 'tab-list', this.#listTabItem)
 		);
-		this.addEvent();
+		this.el.appendChild(
+			this.#generateList('div', 'tab-content', this.#listTabContent)
+		);
+		this.#addEvent();
+		const activeTab = this.el.querySelector('div.tab-pane.active');
+		this.generateChartBox(activeTab);
 		return this.el;
 	}
 }

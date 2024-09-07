@@ -1,32 +1,17 @@
 import Chart from 'chart.js/auto';
 import { DivComponent } from '../../common/div-component';
+import { configChartDoughnut } from '../../configChart.js';
 import './statistic-box';
 
 export class StatisticBox extends DivComponent {
 	constructor() {
 		super('article');
+		this.#tabs = new WebTransportBidirectionalStream();
 	}
 	renderStatisticBox() {
 		const ctx = document.getElementById('statisticBox');
 
-		new Chart(ctx, {
-			type: 'doughnut',
-			data: {
-				labels: ['Red', 'Blue', 'Yellow'],
-				datasets: [
-					{
-						label: 'My First Dataset',
-						data: [300, 150, 100],
-						backgroundColor: [
-							'rgb(255, 99, 132)',
-							'rgb(54, 162, 235)',
-							'rgb(255, 205, 86)',
-						],
-						hoverOffset: 4,
-					},
-				],
-			},
-		});
+		new Chart(ctx, configChartDoughnut);
 	}
 	render() {
 		this.el.classList.add('container', 'analytics');
