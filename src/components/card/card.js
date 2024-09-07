@@ -1,12 +1,11 @@
 import { DivComponent } from '../../common/div-component';
 import './card.css';
-import WalletIcon from '/Wallet.svg';
 
 export class Card extends DivComponent {
 	#title;
 	#amount;
 	#icon;
-	constructor(title = '', amount = 0, icon = WalletIcon) {
+	constructor(title, amount, icon) {
 		super('article');
 		this.#title = title;
 		this.#amount = amount;

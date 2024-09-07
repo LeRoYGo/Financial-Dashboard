@@ -1,20 +1,14 @@
 import { DivComponent } from '../../common/div-component';
 import { Card } from '../card/card';
 import './card-list.css';
-import ExpensesIcon from '/Expenses.svg';
-import IncomesIcon from '/Incomes.svg';
-import WalletIcon from '/Wallet.svg';
 
 export class CardList extends DivComponent {
 	#listCard;
-
-	constructor(balance = 0, incomes = 0, expenses = 0) {
+	constructor(listCard) {
 		super();
-		this.#listCard = [
-			new Card('Balance', balance, WalletIcon),
-			new Card('Incomes This Month', incomes, IncomesIcon),
-			new Card('Expenses This Month', expenses, ExpensesIcon),
-		];
+		this.#listCard = listCard.map(
+			card => new Card(card.title, card.amount, card.icon)
+		);
 	}
 
 	render() {

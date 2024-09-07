@@ -1,0 +1,20 @@
+.analytics {
+	overflow: hidden;
+}
+.bid-analytics {
+	height: 100%;
+}
+
+.body-tabs {
+	margin-bottom: 15px;
+}
+.body-tabs__title {
+	color: rgb(107, 114, 128);
+	font-size: 16px;
+	line-height: 24px;
+}
+.body-tabs__sum {
+	color: rgb(37, 44, 50);
+	font-size: 24px;
+	line-height: 32px;
+}

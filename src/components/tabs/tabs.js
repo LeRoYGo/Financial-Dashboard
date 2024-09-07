@@ -4,12 +4,8 @@ import './tabs.css';
 
 export class Tabs extends DivComponent {
 	#listTab;
-	#balance;
-	#chart;
-	constructor(balance, listTab) {
-		super('div');
-		this.#balance = balance;
-		this.#chart = new ChartBox();
+	constructor(listTab) {
+		super();
 		this.#listTab = listTab;
 	}
 	#addEvent() {
@@ -17,7 +13,10 @@ export class Tabs extends DivComponent {
 			const tabItems = document.querySelectorAll('.tab-item');
 
 			tabItems.forEach(function (tab) {
-				tab.addEventListener('click', function () {
+				tab.addEventListener('click', function (even) {
+					const target = even.target;
+					console.log(target);
+
 					const tabId = this.getAttribute('data-tab');
 					const content = document.getElementById(tabId);
 
@@ -32,48 +31,35 @@ export class Tabs extends DivComponent {
 			});
 		});
 	}
+	#generateListTab(listElement) {
+		const elUl = document.createElement('ul');
+		elUl.classList.add('tab-list');
 
-	#generateList(tag, classStyle, listElement = []) {
-		const el = document.createElement(tag);
-		el.classList.add(classStyle);
-		el.innerHTML = '';
-		const tagHTML = tag == 'ul' ? 'li' : 'div';
+		const elDiv = document.createElement('div');
+		elDiv.classList.add('tab-list');
 		listElement.map(item => {
-			el.innerHTML += `<${tagHTML} class="${item.classStyle.join(' ')}"
-				${tag == 'ul' ? ` data-tab=${item.dataTab}` : `id=${item.dataTab}`}>
-				${item.content}</${tagHTML}>`;
+			elUl.innerHTML += `
+			<li class='${item.classStyle.join(' ')}' data-tab=${item.dataTab}>${
+				item.name
+			}</li>`;
+			elDiv.innerHTML += `
+			<div class='${item.content.classStyle.join(' ')}' id=${item.dataTab}>${
+				item.content.content
+			}</div>`;
 		});
 
-		return el;
+		return [elUl, elDiv];
 	}
-
-	generateChartBox(el) {
-		el.innerHTML = '';
-		el.appendChild(this.#chart.render());
-	}
-
-	workChartBox() {
-		this.#chart.egre();
-	}
-
-	render() {
-		this.el.classList.add('container', 'tabs');
-
-		this.el.innerHTML = `
-		<div class='body-tabs'>
-			<h2 class='body-tabs__title'>Your Balance</h2>
-			<span class='body-tabs__sum'>₽ ${this.#balance}</span>
-		</div>`;
-
-		this.el.appendChild(
-			this.#generateList('ul', 'tab-list', this.#listTabItem)
-		);
-		this.el.appendChild(
-			this.#generateList('div', 'tab-content', this.#listTabContent)
-		);
-		this.#addEvent();
+	#generateChart() {
 		const activeTab = this.el.querySelector('div.tab-pane.active');
-		this.generateChartBox(activeTab);
+		activeTab.appendChild(new ChartBox().render(this.#listTab.id));
+	}
+	render() {
+		this.el.classList.add('tabs', this.#listTab.id);
+		const listTabs = this.#generateListTab(this.#listTab.listTabItem);
+		listTabs.forEach(item => this.el.appendChild(item));
+		this.#addEvent();
+		this.#generateChart();
 		return this.el;
 	}
 }

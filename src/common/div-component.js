@@ -1,3 +1,5 @@
+import './div-component.css';
+
 export class DivComponent {
 	constructor(tegHTML = 'div') {
 		this.el = document.createElement(tegHTML);

@@ -5,9 +5,9 @@ import './transactions-list.css';
 export class TransactionsList extends DivComponent {
 	#transactionsList;
 
-	constructor(transactions = []) {
+	constructor(transaction) {
 		super();
-		this.#transactionsList = transactions.map(
+		this.#transactionsList = transaction.map(
 			transaction =>
 				new Transaction(transaction.title, transaction.sum, transaction.data)
 		);

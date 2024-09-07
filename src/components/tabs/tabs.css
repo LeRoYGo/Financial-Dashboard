@@ -9,7 +9,6 @@
 	padding: 0;
 	margin: 0;
 	list-style: none;
-	border-bottom: 1px solid rgba(156, 163, 175, 0.3);
 }
 
 .tab-item {
@@ -45,28 +44,8 @@
 .tab-pane {
 	display: none;
 	width: 100%;
-	height: 85%;
 }
 
 .tab-pane.active {
 	display: block;
-}
-
-.body-tabs {
-	margin-bottom: 15px;
-}
-.body-tabs__title {
-	color: rgb(107, 114, 128);
-	font-size: 16px;
-	line-height: 24px;
-}
-.body-tabs__sum {
-	color: rgb(37, 44, 50);
-	font-size: 24px;
-	line-height: 32px;
-}
-
-.chart {
-	width: 100%;
-	height: 100%;
 }
